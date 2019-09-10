@@ -43,6 +43,28 @@ class BookshelfService
         return $book;
     }
 
+
+    /**
+     * @param array $criteria
+     * @return Collection
+     */
+    public function searchBooks($criteria)
+    {
+        $query = DB::table('books');
+
+        if(array_key_exists('isbn', $criteria) && isset($criteria['isbn']))
+        {
+            $query->orwhere('isbn', 'like', '%'.$criteria['isbn'].'%');
+        }
+
+        if(array_key_exists('title', $criteria) && isset($criteria['title']))
+        {
+            $query->orWhere('title', 'like', '%'.$criteria['title'].'%');
+        }
+
+        return $query->get();
+    }
+
     /**
      * List all authors
      * @return Collection
@@ -73,6 +95,22 @@ class BookshelfService
     }
 
     /**
+     * @param array $criteria
+     * @return Collection
+     */
+    public function searchAuthors($criteria)
+    {
+        $query = DB::table('authors');
+
+        if(array_key_exists('name', $criteria) && isset($criteria['name']))
+        {
+            $query->orwhere('name', 'like', '%'.$criteria['name'].'%');
+        }
+
+        return $query->get();
+    }
+
+    /**
      * List all genres
      * @return Collection
      */
@@ -81,6 +119,22 @@ class BookshelfService
         $genres = DB::table('genres')->get();
 
         return $genres;
+    }
+
+    /**
+     * @param array $criteria
+     * @return Collection
+     */
+    public function searchGenres($criteria)
+    {
+        $query = DB::table('genres');
+
+        if(array_key_exists('name', $criteria) && isset($criteria['name']))
+        {
+            $query->orwhere('name', 'like', '%'.$criteria['name'].'%');
+        }
+
+        return $query->get();
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Services\BookshelfService;
 use Illuminate\Contracts\Queue\EntityNotFoundException;
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -23,7 +24,7 @@ class BookshelfController extends BaseController
         $this->bookshelfService = $bookshelfService;
     }
 
-    public function indexBooks()
+    public function listBooks()
     {
         $books = $this->bookshelfService->getBooks();
 
@@ -44,9 +45,30 @@ class BookshelfController extends BaseController
         return $book;
     }
 
-    public function indexAuthors()
+    public function searchBooks(Request $request)
+    {
+        $criteria = [
+           'isbn'   => $request->get('isbn'),
+           'title'  => $request->get('title')
+        ];
+
+        return $this->bookshelfService->searchBooks($criteria);
+    }
+
+    public function listAuthors()
     {
         $authors = $this->bookshelfService->getAuthors();
+
+        return $authors;
+    }
+
+    public function searchAuthors(Request $request)
+    {
+        $criteria = [
+            'name'   => $request->get('name')
+        ];
+
+        $authors = $this->bookshelfService->searchAuthors($criteria);
 
         return $authors;
     }
@@ -65,11 +87,22 @@ class BookshelfController extends BaseController
         return $author;
     }
 
-    public function indexGenres()
+    public function listGenres()
     {
         $genres = $this->bookshelfService->getGenres();
 
         return $genres;
+    }
+
+    public function searchGenres(Request $request)
+    {
+        $criteria = [
+            'name'   => $request->get('name')
+        ];
+
+        $authors = $this->bookshelfService->searchGenres($criteria);
+
+        return $authors;
     }
 
     public function showGenre($id)
@@ -86,7 +119,7 @@ class BookshelfController extends BaseController
         return $genre;
     }
 
-    public function indexAuthorsByBook($id)
+    public function listAuthorsByBook($id)
     {
         try
         {
@@ -100,7 +133,7 @@ class BookshelfController extends BaseController
         return $authors;
     }
 
-    public function indexBooksByAuthor($id)
+    public function listBooksByAuthor($id)
     {
         try
         {
@@ -114,7 +147,7 @@ class BookshelfController extends BaseController
         return $books;
     }
 
-    public function indexGenresByBook($id)
+    public function listGenresByBook($id)
     {
         try
         {

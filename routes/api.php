@@ -20,8 +20,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(array('prefix' => 'bookshelf'), function()
 {
     Route::get('/books', [
-        'as' => 'bookshelf.books.indexBooks',
-        'uses' => 'BookshelfController@indexBooks'
+        'as' => 'bookshelf.books.listBooks',
+        'uses' => 'BookshelfController@listBooks'
+    ]);
+
+    Route::get('/books/search', [
+        'as' => 'bookshelf.books.search',
+        'uses' => 'BookshelfController@searchBooks'
     ]);
 
     Route::get('/books/{id}', [
@@ -30,18 +35,23 @@ Route::group(array('prefix' => 'bookshelf'), function()
     ]);
 
     Route::get('/books/{id}/authors', [
-        'as' => 'bookshelf.books.indexAuthorsByBook',
-        'uses' => 'BookshelfController@indexAuthorsByBook'
+        'as' => 'bookshelf.books.listAuthorsByBook',
+        'uses' => 'BookshelfController@listAuthorsByBook'
     ]);
 
     Route::get('/books/{id}/genres', [
-        'as' => 'bookshelf.books.indexGenresByBook',
-        'uses' => 'BookshelfController@indexGenresByBook'
+        'as' => 'bookshelf.books.listGenresByBook',
+        'uses' => 'BookshelfController@listGenresByBook'
     ]);
 
     Route::get('/authors', [
-        'as' => 'bookshelf.authors.indexAuthors',
-        'uses' => 'BookshelfController@indexAuthors'
+        'as' => 'bookshelf.authors.listAuthors',
+        'uses' => 'BookshelfController@listAuthors'
+    ]);
+
+    Route::get('/authors/search', [
+        'as' => 'bookshelf.authors.search',
+        'uses' => 'BookshelfController@searchAuthors'
     ]);
 
     Route::get('/authors/{id}', [
@@ -50,13 +60,18 @@ Route::group(array('prefix' => 'bookshelf'), function()
     ]);
 
     Route::get('/authors/{id}/books', [
-        'as' => 'bookshelf.authors.indexBooksByAuthor',
-        'uses' => 'BookshelfController@indexBooksByAuthor'
+        'as' => 'bookshelf.authors.listBooksByAuthor',
+        'uses' => 'BookshelfController@listBooksByAuthor'
     ]);
 
     Route::get('/genres', [
-        'as' => 'bookshelf.genres.indexGenres',
-        'uses' => 'BookshelfController@indexGenres'
+        'as' => 'bookshelf.genres.listGenres',
+        'uses' => 'BookshelfController@listGenres'
+    ]);
+
+    Route::get('/genres/search', [
+        'as' => 'bookshelf.genres.search',
+        'uses' => 'BookshelfController@searchGenres'
     ]);
 
     Route::get('/genres/{id}', [
