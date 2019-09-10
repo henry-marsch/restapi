@@ -190,7 +190,7 @@ class BookshelfService
 
         if($authors->isEmpty())
         {
-            throw new EntityNotFoundException('Book', $id);
+            throw new EntityNotFoundException('Author', $id);
         }
 
         return $authors;
