@@ -81,4 +81,12 @@ Route::group(array('prefix' => 'bookshelf'), function()
 
 });
 
+Route::group(array('prefix' => 'googlebooks'), function()
+{
+    Route::get('/test', [
+        'as' => 'googlebooks.test',
+        'uses' => 'GooglebooksController@test'
+    ]);
+});
+
 
