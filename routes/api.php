@@ -19,6 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(array('prefix' => 'bookshelf'), function()
 {
+    Route::post('/books', [
+        'as' => 'bookshelf.books.create',
+        'uses' => 'BookshelfController@createBook'
+    ]);
+
     Route::get('/books', [
         'as' => 'bookshelf.books.listBooks',
         'uses' => 'BookshelfController@listBooks'
@@ -78,7 +83,6 @@ Route::group(array('prefix' => 'bookshelf'), function()
         'as' => 'bookshelf.genres.showGenre',
         'uses' => 'BookshelfController@showGenre'
     ]);
-
 });
 
 Route::group(array('prefix' => 'googlebooks'), function()

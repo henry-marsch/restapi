@@ -7,12 +7,30 @@ namespace App\Http\Services;
 use Illuminate\Contracts\Queue\EntityNotFoundException;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use function MongoDB\BSON\toJSON;
 
 class BookshelfService
 {
     public function __construct()
     {
 
+    }
+
+    /**
+     * @param $title
+     * @param $author
+     * @param $isbn
+     * @param $price
+     * @return bool
+     */
+    public function createBook($title, $author, $isbn, $price)
+    {
+        return DB::table('books')->insertGetId([
+            'title'     => $title,
+            'author'    => $author,
+            'isbn'      => $isbn,
+            'price'     => $price
+        ]);
     }
 
     /**
