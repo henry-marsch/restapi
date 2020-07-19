@@ -4,6 +4,7 @@
 namespace App\Http\Services;
 
 
+use Exception;
 use Illuminate\Contracts\Queue\EntityNotFoundException;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -21,16 +22,24 @@ class BookshelfService
      * @param $author
      * @param $isbn
      * @param $price
-     * @return bool
+     * @return int|Exception
      */
     public function createBook($title, $author, $isbn, $price)
     {
-        return DB::table('books')->insertGetId([
-            'title'     => $title,
-            'author'    => $author,
-            'isbn'      => $isbn,
-            'price'     => $price
-        ]);
+        try
+        {
+            return DB::table('books')->insertGetId([
+                'title'     => $title,
+                'author'    => $author,
+                'isbn'      => $isbn,
+                'price'     => $price
+            ]);
+        }
+        catch(Exception $e)
+        {
+            return $e->getMessage();
+        }
+
     }
 
     /**

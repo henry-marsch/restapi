@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Services\BookshelfService;
-use Exception;
 use Illuminate\Contracts\Queue\EntityNotFoundException;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
@@ -27,21 +26,13 @@ class BookshelfController extends BaseController
 
     public function createBook(Request $request)
     {
-        try
-        {
-            return $this->bookshelfService->createBook
-            (
-                $request->title,
-                $request->author,
-                $request->isbn,
-                $request->price
-            );
-        }
-        catch(Exception $e)
-        {
-            return $e->getMessage();
-        }
-
+        return $this->bookshelfService->createBook
+        (
+            $request->title,
+            $request->author,
+            $request->isbn,
+            $request->price
+        );
     }
 
     public function listBooks()
