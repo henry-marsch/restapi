@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Eloquent\ProductRepository;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -24,6 +25,10 @@ class ProductController extends BaseController
         $this->productRepository = $productRepository;
     }
 
+    /**
+     * @param Request $request
+     * @return Model
+     */
     public function create(Request $request)
     {
         return $this->productRepository->create($request->all());

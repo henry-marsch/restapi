@@ -2,19 +2,19 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\Product;
-use App\Contracts\Repositories\ProductRepositoryInterface;
+use App\Contracts\Repositories\BookRepositoryInterface;
+use App\Book;
 use Illuminate\Support\Collection;
 
-class ProductRepository extends BaseRepository implements ProductRepositoryInterface
+class BookRepository extends BaseRepository implements BookRepositoryInterface
 {
 
     /**
-     * ProductRepository constructor.
+     * BookRepository constructor.
      *
-     * @param Product $model
+     * @param Book $model
      */
-    public function __construct(Product $model)
+    public function __construct(Book $model)
     {
         parent::__construct($model);
     }
