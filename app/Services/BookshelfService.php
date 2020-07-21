@@ -8,7 +8,6 @@ use Exception;
 use Illuminate\Contracts\Queue\EntityNotFoundException;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-use function MongoDB\BSON\toJSON;
 
 class BookshelfService
 {

@@ -93,4 +93,12 @@ Route::group(array('prefix' => 'googlebooks'), function()
     ]);
 });
 
+Route::group(array('prefix' => 'products'), function()
+{
+    Route::post('/', [
+        'as' => 'products.create',
+        'uses' => 'ProductController@create'
+    ]);
+});
+
 
