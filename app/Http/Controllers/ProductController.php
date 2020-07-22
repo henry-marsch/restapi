@@ -39,7 +39,10 @@ class ProductController extends BaseController
      */
     public function create(Request $request)
     {
-        return $this->productRepository->create($request->all());
+        return $this->productRepository->create(
+            $request->input('name'),
+            $request->input('price')
+        );
     }
 
     /**

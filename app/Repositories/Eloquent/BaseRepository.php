@@ -23,16 +23,6 @@ class BaseRepository implements EloquentRepositoryInterface
     }
 
     /**
-     * @param array $attributes
-     *
-     * @return Model
-     */
-    public function create(array $attributes): Model
-    {
-        return $this->model->create($attributes);
-    }
-
-    /**
      * @param $id
      * @return Model
      */

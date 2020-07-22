@@ -6,7 +6,7 @@ class Book extends Product
 {
 
     protected $fillable = [
-        'p_id',
+        'p_Id',
         'isbn',
         'author',
         'title'

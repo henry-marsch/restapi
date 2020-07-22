@@ -40,12 +40,12 @@ class BookController extends BaseController
     public function create(Request $request)
     {
         try {
-            return $this->bookRepository->create([
-                'p_id' => $request->p_id,
-                'title' => $request->title,
-                'author' => $request->author,
-                'isbn' => $request->isbn
-            ]);
+            return $this->bookRepository->create(
+                $request->input('pId'),
+                $request->input('isbn'),
+                $request->input('author'),
+                $request->input('title')
+            );
         } catch(Exception $e) {
             return $e->getMessage();
         }
