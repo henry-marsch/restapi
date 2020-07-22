@@ -49,6 +49,12 @@ Route::group(array('prefix' => 'products'), function()
         'as' => 'products.create',
         'uses' => 'ProductController@create'
     ]);
+
+    Route::get('/', [
+        'as' => 'products.list',
+        'uses' => 'ProductController@list'
+    ]);
+
 });
 
 

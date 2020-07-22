@@ -1,10 +1,12 @@
 <?php
 namespace App\Contracts\Repositories;
 
-use App\Product;
 use Illuminate\Support\Collection;
 
-interface ProductRepositoryInterface
+interface ProductRepositoryInterface extends  EloquentRepositoryInterface
 {
+    /**
+     * @return Collection
+     */
     public function all(): Collection;
 }
